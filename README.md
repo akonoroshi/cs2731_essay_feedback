@@ -2,6 +2,11 @@
 
 This is the repository for the final project of CS 2731 at the University of Pittsburgh
 
+If you want to see the end results without getting the dataset or running the code, go to the following links
+- https://sites.pitt.edu/~yua17/projects/pages/essay-feedback-sample/feedback_36.html
+- https://sites.pitt.edu/~yua17/projects/pages/essay-feedback-sample/feedback_42.html
+- https://sites.pitt.edu/~yua17/projects/pages/essay-feedback-sample/feedback_45.html
+
 ## Prerequisites 
 
 - ArgReWrite V2 corpus. It should be available to public soon, but at this moment, ask Tazin Afrin (taa74@pitt.edu) for the corpus. 

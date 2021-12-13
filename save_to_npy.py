@@ -20,26 +20,13 @@ use_as_is_col = ['Add', 'Modify', 'Delete', 'Organization', 'Word-Usage/Clarity'
 rubrics = ['d_Prompt', 'd_Thesis', 'd_Claims', 'd_Evidence', 'd_Reasoning', 'd_Organization', 
     'd_Rebuttal', 'd_Precision', 'd_Fluency', 'd_Coventions']
 
-list_cols_lf_ave = ['prev_para_ave_pool', 'prev_sent_ave_pool', 'target_ave_pool', 'fol_sent_ave_pool', 'fol_para_ave_pool']
-list_cols_lf_max = ['prev_para_max_pool', 'prev_sent_max_pool', 'target_max_pool', 'fol_sent_max_pool', 'fol_para_max_pool']
-list_cols_sbert = []
-converters = {c: literal_eval for c in list_cols_lf_ave+list_cols_lf_max}
-
-df = pd.read_csv('edits_longformer_embedding.csv', converters=converters)
-df = df[df['Conventions/Grammar/Spelling'] == 0]
-
-train = df[(df['val_data'] == 0) & (df['test_data'] == 0)].copy()
-val = df[df['val_data'] == 1].copy()
-test = df[df['test_data'] == 1].copy()
-
-save_X(train, val, test, 'longformer', '_ave', use_as_is_col, list_cols_lf_ave)
-save_X(train, val, test, 'longformer', '_max', use_as_is_col, list_cols_lf_max)
 
 list_cols_sbert = ['prev_para_embed_sbert', 'prev_sent_embed_sbert', 'target_embed_sbert', 'fol_sent_embed_sbert', 'fol_para_embed_sbert']
-df = pd.read_csv('edits_sbert_embedding.csv')
+converters = {c: literal_eval for c in list_cols_sbert}
+df = pd.read_csv('edits_sbert_embedding.csv', converters=converters)
 
-for c in list_cols_sbert:
-    df[c] = df[c].str.strip('[]').str.strip(' ').str.replace('\n', '').str.replace('  ', ' ').str.replace(',', '').str.split(' ')
+#for c in list_cols_sbert:
+#    df[c] = df[c].str.strip('[]').str.strip(' ').str.replace('\n', '').str.replace('  ', ' ').str.replace(',', '').str.split(' ')
 df = df[df['Conventions/Grammar/Spelling'] == 0]
 
 train = df[(df['val_data'] == 0) & (df['test_data'] == 0)].copy()
